@@ -3,41 +3,34 @@
 let ai = Math.trunc(Math.random()*20)+1
 let highscore = 0
 let score = 20
+const displayMessage = function(message) {
+    document.querySelector('.message').textContent = message
+}
+
 
 document.querySelector('.check').addEventListener("click", () => {
     const guess = Number(document.querySelector('.guess').value)
     // No input Number
     if(!guess){
-        document.querySelector('.message').textContent = "⛔ no number ⛔"
+        displayMessage("⛔ no number ⛔")
     }
     else{
         // when the guess is correct 
         if(guess === ai){
             document.querySelector('body').style.backgroundColor = '#60b347'
-            document.querySelector('.message').textContent = "You Won"
+            displayMessage("You Won")
             document.querySelector('.number').textContent = ai
-            document.querySelector('.highscore').textContent = highscore<score? score:highscore
+            document.querySelector('.highscore').textContent = highscore>score? score:highscore
 
-        // when guess is too low
-        }else if(guess < ai){
+        // when guess is wrong
+        }else if(guess !== ai){
             if(score > 1){
-                document.querySelector('.message').textContent =  "Too low"
+                displayMessage(guess<ai? "Too low📉 ":"Too high📈")
                 score--
                 document.querySelector('.score').textContent = score
             }else{
                 document.querySelector('body').style.backgroundColor = 'red'
-                document.querySelector('.message').textContent = 'You lost the game!'
-            }
-        
-        // when guess is too high
-        }else if(guess > ai){
-            if (score > 1){
-            document.querySelector('.message').textContent =  "Too high"
-            score--
-            document.querySelector('.score').textContent = score
-            }else{
-                document.querySelector('body').style.backgroundColor = 'red'
-                document.querySelector('.message').textContent = 'You lost the game!'
+                disaplayMessage('You lost the game!')
             }
         }
     }
