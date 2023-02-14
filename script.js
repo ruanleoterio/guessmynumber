@@ -20,7 +20,7 @@ document.querySelector('.check').addEventListener("click", () => {
             document.querySelector('body').style.backgroundColor = '#60b347'
             displayMessage("You Won")
             document.querySelector('.number').textContent = ai
-            document.querySelector('.highscore').textContent = highscore>score? score:highscore
+            document.querySelector('.highscore').textContent = highscore<score? score:highscore
 
         // when guess is wrong
         }else if(guess !== ai){
